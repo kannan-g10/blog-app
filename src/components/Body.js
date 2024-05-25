@@ -2,9 +2,14 @@ import { useContext } from 'react';
 import emptyImg from '../assets/image.png';
 import { BlogContext } from '../context/BlogContext';
 
-const Body = ({ blog }) => {
+const Body = ({ blog, onClose }) => {
   const { title, imageUrl, description, _id } = blog;
-  const { deleteBlog } = useContext(BlogContext);
+  const { deleteBlog, changePosting } = useContext(BlogContext);
+
+  const handleEdit = () => {
+    onClose();
+    changePosting(_id, 0);
+  };
 
   return (
     <div className="flex flex-col items-center border w-full lg:w-1/4 mx-auto p-5">
@@ -16,7 +21,10 @@ const Body = ({ blog }) => {
       />
       <p className="text-lg font-medium m-2">{description}</p>
       <div>
-        <button className="w-20 bg-indigo-500 px-3 py-1 rounded-md text-white font-medium mx-2">
+        <button
+          className="w-20 bg-indigo-500 px-3 py-1 rounded-md text-white font-medium mx-2"
+          onClick={handleEdit}
+        >
           Edit
         </button>
         <button

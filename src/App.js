@@ -16,7 +16,7 @@ const App = () => {
         <>
           <Header onClose={changeModal} />
           {blogs.map(blog => (
-            <Body blog={blog} key={blog._id} />
+            <Body blog={blog} onClose={changeModal} key={blog._id} />
           ))}
         </>
       )}
